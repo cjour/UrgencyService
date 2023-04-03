@@ -1,5 +1,7 @@
 package com.medhead.urgencyManagement.entity;
 
+import java.util.List;
+
 public class Hospital {
     private Integer id;
     private String organisationName;
@@ -11,8 +13,9 @@ public class Hospital {
     private String postCode;
     private String latitude;
     private String longitude;
+    private List<Pathology> pathologies;
 
-    public Hospital(Integer id,String organisationName, String address1, String address2, String address3, String city, String county, String postCode, String latitude, String longitude) {
+    public Hospital(Integer id,String organisationName, String address1, String address2, String address3, String city, String county, String postCode, String latitude, String longitude, List<Pathology> pathologies) {
         this.id = id;
         this.organisationName = organisationName;
         this.address1 = address1;
@@ -23,6 +26,7 @@ public class Hospital {
         this.postCode = postCode;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.pathologies = pathologies;
     }
 
     public Hospital() {
@@ -106,5 +110,30 @@ public class Hospital {
 
     public void setLongitude(String longitude) {
         this.longitude = longitude;
+    }
+
+    public List<Pathology> getPathologies() {
+        return pathologies;
+    }
+
+    public void setPathologies(List<Pathology> pathologies) {
+        this.pathologies = pathologies;
+    }
+
+    @Override
+    public String toString() {
+        return "Hospital{" +
+                "id=" + id +
+                ", organisationName='" + organisationName + '\'' +
+                ", address1='" + address1 + '\'' +
+                ", address2='" + address2 + '\'' +
+                ", address3='" + address3 + '\'' +
+                ", city='" + city + '\'' +
+                ", county='" + county + '\'' +
+                ", postCode='" + postCode + '\'' +
+                ", latitude='" + latitude + '\'' +
+                ", longitude='" + longitude + '\'' +
+                ", pathologies=" + pathologies +
+                '}';
     }
 }
