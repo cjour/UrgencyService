@@ -1,11 +1,6 @@
 name: Urgency Service CI
 
-on:
-  workflow_dispatch:
-      #Trigger the workflow on push from the main branch
-  push:
-    branches:
-      - main
+on: [push]
 
 jobs:
   #Test's jobs
