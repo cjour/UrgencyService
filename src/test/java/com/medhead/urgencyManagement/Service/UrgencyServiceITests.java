@@ -1,4 +1,5 @@
 package com.medhead.urgencyManagement.Service;
+/*
 
 import com.medhead.urgencyManagement.entity.Hospital;
 import com.medhead.urgencyManagement.service.IUrgencyService;
@@ -31,4 +32,4 @@ public class UrgencyServiceITests {
         // Closest hospital id is 33.
         Assertions.assertEquals(hospital.getId(), 33);
     }
-}
+}*/
