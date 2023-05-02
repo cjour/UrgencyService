@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface DistanceCalculationRepository {
     @GetMapping()
     DistanceMatrixResponse getDistance(
-            @RequestParam(value="origins") String origins,
-            @RequestParam(value="destinations") String destinations,
+            @RequestParam(value = "origins") String origins,
+            @RequestParam(value = "destinations") String destinations,
             @RequestParam(value = "key") String key
     );
 }

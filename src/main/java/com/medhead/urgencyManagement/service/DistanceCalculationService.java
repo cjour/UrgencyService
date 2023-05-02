@@ -2,7 +2,6 @@ package com.medhead.urgencyManagement.service;
 
 import com.medhead.urgencyManagement.entity.DistanceMatrixResponse;
 import com.medhead.urgencyManagement.repository.DistanceCalculationRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
