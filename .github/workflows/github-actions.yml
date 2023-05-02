@@ -13,7 +13,6 @@ jobs:
     name: Unit tests
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Lauching unit testing job"
         uses: actions/checkout@v3
       - name: Set up JDK
         uses: actions/setup-java@v1
