@@ -37,7 +37,7 @@ public class UrgencyService implements IUrgencyService {
 
         for (Hospital hospital : hospitals) {
             String destinations = stringUtils.buildCoordinates(hospital.getLatitude(), hospital.getLongitude(), StringUtils.spaceSeparator);
-            DistanceMatrixResponse distanceMatrixResponse = distanceCalculationService.getDistance(origins, destinations, secretKey);
+            DistanceMatrixResponse distanceMatrixResponse = distanceCalculationService.getDistance(origins, destinations, "toto");
             if(distanceMatrixResponse.status.equals(DistanceMatrixStatus.OK)) {
                 for (DistanceMatrixRow row :distanceMatrixResponse.rows) {
                     for (DistanceMatrixElement element: row.elements) {
