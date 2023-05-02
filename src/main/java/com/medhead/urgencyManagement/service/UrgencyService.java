@@ -15,10 +15,10 @@ import java.util.logging.Logger;
 @Service
 public class UrgencyService implements IUrgencyService {
     @Autowired
-    private HospitalRepository hospitalsRepository;
+    private HospitalService hospitalService;
 
     @Autowired
-    DistanceCalculationRepository distanceCalculationRepository;
+    DistanceCalculationService distanceCalculationService;
 
     private final StringUtils stringUtils = new StringUtils();
 
@@ -26,8 +26,8 @@ public class UrgencyService implements IUrgencyService {
 
     @Override
     public Hospital getClosestHospitalBySpeciality(String latitude, String longitude, String pathology, String ambulanceId) {
-        List<Hospital> hospitals = hospitalsRepository.findBySpeciality(pathology);
-        String origins = stringUtils.buildCoordinates(latitude, longitude);
+        List<Hospital> hospitals = hospitalService.findBySpeciality(pathology);
+        String origins = stringUtils.buildCoordinates(latitude, longitude, StringUtils.spaceSeparator);
         Map<Hospital, Integer> hospitalsMap = this.getHospitalsByDurationFromOrigins(origins, hospitals);
         return this.getClosestHospital(hospitalsMap);
     }
@@ -35,10 +35,9 @@ public class UrgencyService implements IUrgencyService {
     public Map<Hospital, Integer> getHospitalsByDurationFromOrigins(String origins, List<Hospital> hospitals) {
         Map<Hospital, Integer> hospitalsMap = new HashMap<>();
 
-        for (Hospital hospital: hospitals) {
-            String destinations = stringUtils.buildCoordinates(hospital.getLatitude(), hospital.getLongitude());
-            String API_KEY = "AIzaSyCqyuP-02GgxkxgZRBqEnBzCanKc05qJXQ";
-            DistanceMatrixResponse distanceMatrixResponse = distanceCalculationRepository.getDistance(origins, destinations, API_KEY);
+        for (Hospital hospital : hospitals) {
+            String destinations = stringUtils.buildCoordinates(hospital.getLatitude(), hospital.getLongitude(), StringUtils.spaceSeparator);
+            DistanceMatrixResponse distanceMatrixResponse = distanceCalculationService.getDistance(origins, destinations, secretKey);
             if(distanceMatrixResponse.status.equals(DistanceMatrixStatus.OK)) {
                 for (DistanceMatrixRow row :distanceMatrixResponse.rows) {
                     for (DistanceMatrixElement element: row.elements) {
@@ -56,7 +55,7 @@ public class UrgencyService implements IUrgencyService {
         int duration = Integer.MAX_VALUE;
         Hospital closestHospital = null;
         for (Map.Entry<Hospital, Integer> entry : hospitalsMap.entrySet()) {
-            if(entry.getValue() < duration) {
+            if (entry.getValue() < duration) {
                 duration = entry.getValue();
                 closestHospital = entry.getKey();
             }

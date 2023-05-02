@@ -3,6 +3,7 @@ package com.medhead.urgencyManagement.Service;
 import com.medhead.urgencyManagement.entity.*;
 import com.medhead.urgencyManagement.repository.HospitalRepository;
 import com.medhead.urgencyManagement.service.DistanceCalculationService;
+import com.medhead.urgencyManagement.service.HospitalService;
 import com.medhead.urgencyManagement.service.IUrgencyService;
 import com.medhead.urgencyManagement.service.UrgencyService;
 import com.medhead.urgencyManagement.utils.StringUtils;
@@ -21,6 +22,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.logging.Logger;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 
 @ExtendWith(SpringExtension.class)
@@ -31,7 +33,7 @@ public class UrgencyServiceUTests {
     private IUrgencyService urgencyService;
 
     @MockBean
-    private HospitalRepository hospitalsRepository;
+    private HospitalService hospitalsService;
 
     @MockBean
     private DistanceCalculationService distanceCalculationService;
@@ -49,7 +51,7 @@ public class UrgencyServiceUTests {
         String ambulanceId = "1";
 
         // Return of HospitalManagement API.
-        given(hospitalsRepository.findBySpeciality(speciality)).willReturn(
+        given(hospitalsService.findBySpeciality(speciality)).willReturn(
                 new ArrayList<>(
                     Arrays.asList(
                             new Hospital(1,"Auckland hospital","","","","Auckland",
@@ -68,7 +70,7 @@ public class UrgencyServiceUTests {
         // Return for distance calculation service.
         String origins = stringUtils.buildCoordinates("-36.848374", "174.763556", StringUtils.spaceSeparator);
         String destinations = stringUtils.buildCoordinates("-36.85937761392017", "174.77031683092022", StringUtils.spaceSeparator);
-        given(distanceCalculationService.getDistance(speciality, origins, destinations)).willReturn(
+        given(distanceCalculationService.getDistance(any(), any(), any())).willReturn(
                 new DistanceMatrixResponse(
                     null,
                     null,
@@ -105,6 +107,6 @@ public class UrgencyServiceUTests {
         Hospital hospital = urgencyService.getClosestHospitalBySpeciality(latitude, longitude, speciality, ambulanceId);
 
         //THEN
-        Assertions.assertEquals(hospital.getId(), 1);
+        Assertions.assertEquals(hospital.getId(), 2);
     }
 }
