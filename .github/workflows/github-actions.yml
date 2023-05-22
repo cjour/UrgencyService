@@ -15,7 +15,7 @@ jobs:
           distribution: 'adopt'
           java-version: '11'
       - name: Run Tests
-        run: mvn -B test
+        run: mvn test
   #Build jobs
   build:
     name: Build application
