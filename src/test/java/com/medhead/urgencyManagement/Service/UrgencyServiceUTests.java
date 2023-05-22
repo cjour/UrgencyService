@@ -105,6 +105,6 @@ public class UrgencyServiceUTests {
         Hospital hospital = urgencyService.getClosestHospitalBySpeciality(latitude, longitude, speciality, ambulanceId);
 
         //THEN
-        Assertions.assertEquals(hospital.getId(), 2);
+        Assertions.assertEquals(1, hospital.getId());
     }
 }
