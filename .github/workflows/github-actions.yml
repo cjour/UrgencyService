@@ -19,6 +19,13 @@ jobs:
   #Build jobs
   build:
     name: Build application
+    runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3 #Copy of the repo on the runner
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'adopt'
+          java-version: '11'
       - name: Build with Maven
         run: mvn --batch-mode --update-snapshots package
