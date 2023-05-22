@@ -68,8 +68,6 @@ public class UrgencyServiceUTests {
         );
 
         // Return for distance calculation service.
-        String origins = stringUtils.buildCoordinates("-36.848374", "174.763556", StringUtils.spaceSeparator);
-        String destinations = stringUtils.buildCoordinates("-36.85937761392017", "174.77031683092022", StringUtils.spaceSeparator);
         given(distanceCalculationService.getDistance(any(), any(), any())).willReturn(
                 new DistanceMatrixResponse(
                     null,
