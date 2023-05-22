@@ -24,6 +24,7 @@ import java.util.logging.Logger;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -68,7 +69,7 @@ public class UrgencyServiceUTests {
         );
 
         // Return for distance calculation service.
-        given(distanceCalculationService.getDistance(any(), any(), any())).willReturn(
+        when(distanceCalculationService.getDistance(any(), any(), any())).thenReturn(
                 new DistanceMatrixResponse(
                     null,
                     null,
@@ -83,7 +84,15 @@ public class UrgencyServiceUTests {
                                                     )
                                             )
                                     )
-                            ),
+                            )
+                    ),
+                    DistanceMatrixStatus.OK,
+                    null
+                ),
+                new DistanceMatrixResponse(
+                    null,
+                    null,
+                    Arrays.asList(
                             new DistanceMatrixRow(
                                     new ArrayList<>(
                                             Collections.singletonList(
@@ -105,6 +114,6 @@ public class UrgencyServiceUTests {
         Hospital hospital = urgencyService.getClosestHospitalBySpeciality(latitude, longitude, speciality, ambulanceId);
 
         //THEN
-        Assertions.assertEquals(1, hospital.getId());
+        Assertions.assertEquals(2, hospital.getId());
     }
 }
