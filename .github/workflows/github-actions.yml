@@ -3,17 +3,22 @@ name: Urgency Service CI
 on: [push]
 
 jobs:
-  #Test's jobs
+  #Test jobs
   tests:
     name: Unit tests
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3 #Copy of the repo on the runner
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
           distribution: 'adopt'
           java-version: '11'
-      #Run Tests
       - name: Run Tests
         run: mvn -B test
+  #Build jobs
+  build:
+    name: Build application
+    steps:
+      - name: Build with Maven
+        run: mvn --batch-mode --update-snapshots package
