@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   #Test jobs
-  tests:
+  unit-test:
     name: Unit tests
     runs-on: ubuntu-latest
     steps:
@@ -14,8 +14,21 @@ jobs:
         with:
           distribution: 'adopt'
           java-version: '11'
-      - name: Run Tests
-        run: mvn test
+      - name: Run unit tests
+        run: mvn clean test
+  integration-test:
+    name: Integration tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3 #Copy of the repo on the runner
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'adopt'
+          java-version: '11'
+      - name: Run integration tests
+        run: mvn failsafe:integration-test
+
   #Build jobs
   build:
     name: Build application
