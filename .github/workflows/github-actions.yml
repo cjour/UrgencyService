@@ -42,8 +42,9 @@ jobs:
           java-version: '11'
       - name: Build with Maven
         run: mvn install -DskipTests
-      - name: Upload artifact
+      - name: Create target folder for upload
         run: mkdir staging && cp target/*.jar staging
+      - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
           name: Package
