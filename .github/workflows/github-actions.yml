@@ -36,7 +36,7 @@ jobs:
           distribution: 'adopt'
           java-version: '11'
       - name: Run integration tests
-        run: mvn clean test-compile failsafe:integration-test
+        run: mvn clean test-compile failsafe:integration-test failsafe:verify
       - name: Create target folder for upload success
         if: success()
         run: mkdir testing && cp target/surefire-reports/*.txt testing
