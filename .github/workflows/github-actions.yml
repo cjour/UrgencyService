@@ -37,9 +37,12 @@ jobs:
           java-version: '11'
       - name: Run integration tests
         run: mvn clean test-compile failsafe:integration-test
-      - name: Create target folder for upload
-        if: success() || failure()
+      - name: Create target folder for upload success
+        if: success()
         run: mkdir testing && cp target/surefire-reports/*.txt testing
+      - name: Create target folder for upload failure
+        if: failure()
+        run: mkdir testing && cp target/failsafe-reports/*.txt testing
       - name: Upload artifact
         if: success() || failure()
         uses: actions/upload-artifact@v3
