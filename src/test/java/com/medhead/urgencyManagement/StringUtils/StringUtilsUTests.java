@@ -21,6 +21,6 @@ public class StringUtilsUTests {
         String result = stringUtils.buildCoordinates(latitude, longitude, StringUtils.spaceSeparator);
 
         //THEN
-        Assertions.assertEquals(result, latitude + StringUtils.spaceSeparator + longitude);
+        Assertions.assertEquals(result, "toto");
     }
 }

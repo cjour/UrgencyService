@@ -31,6 +31,5 @@ public class ControllerIT {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", is(33)));
     }
-
 }
 
