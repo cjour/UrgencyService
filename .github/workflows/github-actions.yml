@@ -3,70 +3,72 @@ name: Urgency Service CI
 on: [push]
 
 jobs:
-  #Test jobs and upload of report as artifacts
-  unit-test:
-    name: Unit tests
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3 #Copy of the repo on the runner
-      - name: Set up JDK
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'adopt'
-          java-version: '11'
-      - name: Run unit tests
-        run: mvn clean test
-      - name: Create target folder for upload
-        if: success() || failure()
-        run: mkdir testing && cp target/surefire-reports/*.txt testing
-      - name: Upload artifact
-        if: success() || failure()
-        uses: actions/upload-artifact@v3
-        with:
-          name: Test-report-UT
-          path: testing
-  integration-test:
-    name: Integration tests
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3 #Copy of the repo on the runner
-      - name: Set up JDK
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'adopt'
-          java-version: '11'
-      - name: Run integration tests
-        run: mvn clean test-compile failsafe:integration-test failsafe:verify
-      - name: Create target folder for upload success
-        if: success()
-        run: mkdir testing && cp target/surefire-reports/*.txt testing
-      - name: Create target folder for upload failure
-        if: failure()
-        run: mkdir testing && cp target/failsafe-reports/*.txt testing
-      - name: Upload artifact
-        if: success() || failure()
-        uses: actions/upload-artifact@v3
-        with:
-          name: Test-report-IT
-          path: testing
-
-  #Build jobs and upload jar as artifact
-  build:
-    name: Build application
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3 #Copy of the repo on the runner
-      - name: Set up JDK
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'adopt'
-          java-version: '11'
-      - name: Build with Maven
-        run: mvn install -DskipTests
-      - name: Create target folder for upload
-        run: mkdir staging && cp target/*.jar staging
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: Package
-          path: staging
+  job1:
+    #Test jobs and upload of report as artifacts
+    unit-test:
+      name: Unit tests
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v3 #Copy of the repo on the runner
+        - name: Set up JDK
+          uses: actions/setup-java@v3
+          with:
+            distribution: 'adopt'
+            java-version: '11'
+        - name: Run unit tests
+          run: mvn clean test
+        - name: Create target folder for upload
+          if: success() || failure()
+          run: mkdir testing && cp target/surefire-reports/*.txt testing
+        - name: Upload artifact
+          if: success() || failure()
+          uses: actions/upload-artifact@v3
+          with:
+            name: Test-report-UT
+            path: testing
+  job2:
+    integration-test:
+      name: Integration tests
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v3 #Copy of the repo on the runner
+        - name: Set up JDK
+          uses: actions/setup-java@v3
+          with:
+            distribution: 'adopt'
+            java-version: '11'
+        - name: Run integration tests
+          run: mvn clean test-compile failsafe:integration-test failsafe:verify
+        - name: Create target folder for upload success
+          if: success()
+          run: mkdir testing && cp target/surefire-reports/*.txt testing
+        - name: Create target folder for upload failure
+          if: failure()
+          run: mkdir testing && cp target/failsafe-reports/*.txt testing
+        - name: Upload artifact
+          if: success() || failure()
+          uses: actions/upload-artifact@v3
+          with:
+            name: Test-report-IT
+            path: testing
+  job3:
+    #Build jobs and upload jar as artifact
+    build:
+      name: Build application
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v3 #Copy of the repo on the runner
+        - name: Set up JDK
+          uses: actions/setup-java@v3
+          with:
+            distribution: 'adopt'
+            java-version: '11'
+        - name: Build with Maven
+          run: mvn install -DskipTests
+        - name: Create target folder for upload
+          run: mkdir staging && cp target/*.jar staging
+        - name: Upload artifact
+          uses: actions/upload-artifact@v3
+          with:
+            name: Package
+            path: staging
