@@ -1,11 +1,10 @@
 package com.medhead.urgencyManagement.service;
 
-import com.medhead.urgencyManagement.entity.*;
-import com.medhead.urgencyManagement.repository.DistanceCalculationRepository;
-import com.medhead.urgencyManagement.repository.HospitalRepository;
+import com.medhead.urgencyManagement.entity.Hospital;
 import com.medhead.urgencyManagement.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StopWatch;
 
 import java.util.HashMap;
 import java.util.List;
@@ -26,32 +25,37 @@ public class UrgencyService implements IUrgencyService {
 
     @Override
     public Hospital getClosestHospitalBySpeciality(String latitude, String longitude, String pathology, String ambulanceId) {
+        StopWatch stopWatch = new StopWatch("getClosestHospitalBySpeciality");
+        stopWatch.start();
         List<Hospital> hospitals = hospitalService.findBySpeciality(pathology);
         String origins = stringUtils.buildCoordinates(latitude, longitude, StringUtils.spaceSeparator);
         Map<Hospital, Integer> hospitalsMap = this.getHospitalsByDurationFromOrigins(origins, hospitals);
+        stopWatch.stop();
+        LOGGER.info("time spend getClosestHospitalBySpeciality: " + stopWatch.getTotalTimeSeconds());
         return this.getClosestHospital(hospitalsMap);
     }
 
     public Map<Hospital, Integer> getHospitalsByDurationFromOrigins(String origins, List<Hospital> hospitals) {
+        StopWatch stopWatch = new StopWatch("getHospitalsByDurationFromOrigins");
+        stopWatch.start();
         Map<Hospital, Integer> hospitalsMap = new HashMap<>();
 
         for (Hospital hospital : hospitals) {
-            String destinations = stringUtils.buildCoordinates(hospital.getLatitude(), hospital.getLongitude(), StringUtils.spaceSeparator);
-            DistanceMatrixResponse distanceMatrixResponse = distanceCalculationService.getDistance(origins, destinations, "toto");
-            if(distanceMatrixResponse.status.equals(DistanceMatrixStatus.OK)) {
-                for (DistanceMatrixRow row :distanceMatrixResponse.rows) {
-                    for (DistanceMatrixElement element: row.elements) {
-                        if(element.duration != null) {
-                            hospitalsMap.put(hospital, element.duration.value);
-                        }
-                    }
-                }
-            }
+            Integer distance = distanceCalculationService.getDistanceBetweenHospitalAndEmergency(
+                    origins,
+                    hospital.getLatitude(),
+                    hospital.getLongitude());
+            hospitalsMap.put(hospital, distance);
         }
+        stopWatch.stop();
+        LOGGER.info("time spend getHospitalsByDurationFromOrigins: " + stopWatch.getTotalTimeSeconds());
         return hospitalsMap;
     }
 
     private Hospital getClosestHospital(Map<Hospital, Integer> hospitalsMap) {
+        StopWatch stopWatch = new StopWatch("getClosestHospital");
+        stopWatch.start();
+
         int duration = Integer.MAX_VALUE;
         Hospital closestHospital = null;
         for (Map.Entry<Hospital, Integer> entry : hospitalsMap.entrySet()) {
@@ -60,6 +64,8 @@ public class UrgencyService implements IUrgencyService {
                 closestHospital = entry.getKey();
             }
         }
+        stopWatch.stop();
+        LOGGER.info("time spend getClosestHospital: " + stopWatch.getTotalTimeSeconds());
         return closestHospital;
     }
 }

@@ -1,17 +1,15 @@
 package com.medhead.urgencyManagement.Service;
 
-import com.medhead.urgencyManagement.entity.*;
-import com.medhead.urgencyManagement.repository.HospitalRepository;
+import com.medhead.urgencyManagement.entity.Hospital;
+import com.medhead.urgencyManagement.entity.Pathology;
 import com.medhead.urgencyManagement.service.DistanceCalculationService;
 import com.medhead.urgencyManagement.service.HospitalService;
 import com.medhead.urgencyManagement.service.IUrgencyService;
 import com.medhead.urgencyManagement.service.UrgencyService;
 import com.medhead.urgencyManagement.utils.StringUtils;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -22,9 +20,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.logging.Logger;
 
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -68,47 +64,47 @@ public class UrgencyServiceUTests {
                 )
         );
 
-        // Return for distance calculation service.
-        when(distanceCalculationService.getDistance(any(), any(), any())).thenReturn(
-                new DistanceMatrixResponse(
-                    null,
-                    null,
-                    Arrays.asList(
-                            new DistanceMatrixRow(
-                                    new ArrayList<>(
-                                            Collections.singletonList(
-                                                    new DistanceMatrixElement(
-                                                            DistanceMatrixElementStatus.OK,
-                                                            new TextValueObject("", 10001),
-                                                            new TextValueObject("", 2621)
-                                                    )
-                                            )
-                                    )
-                            )
-                    ),
-                    DistanceMatrixStatus.OK,
-                    null
-                ),
-                new DistanceMatrixResponse(
-                    null,
-                    null,
-                    Arrays.asList(
-                            new DistanceMatrixRow(
-                                    new ArrayList<>(
-                                            Collections.singletonList(
-                                                    new DistanceMatrixElement(
-                                                            DistanceMatrixElementStatus.OK,
-                                                            new TextValueObject("", 806),
-                                                            new TextValueObject("", 2301)
-                                                    )
-                                            )
-                                    )
-                            )
-                    ),
-                    DistanceMatrixStatus.OK,
-                    null
-                )
-        );
+//        // Return for distance calculation service.
+//        when(distanceCalculationService.getDistance(any(), any(), any())).thenReturn(
+//                new DistanceMatrixResponse(
+//                    null,
+//                    null,
+//                    Arrays.asList(
+//                            new DistanceMatrixRow(
+//                                    new ArrayList<>(
+//                                            Collections.singletonList(
+//                                                    new DistanceMatrixElement(
+//                                                            DistanceMatrixElementStatus.OK,
+//                                                            new TextValueObject("", 10001),
+//                                                            new TextValueObject("", 2621)
+//                                                    )
+//                                            )
+//                                    )
+//                            )
+//                    ),
+//                    DistanceMatrixStatus.OK,
+//                    null
+//                ),
+//                new DistanceMatrixResponse(
+//                    null,
+//                    null,
+//                    Arrays.asList(
+//                            new DistanceMatrixRow(
+//                                    new ArrayList<>(
+//                                            Collections.singletonList(
+//                                                    new DistanceMatrixElement(
+//                                                            DistanceMatrixElementStatus.OK,
+//                                                            new TextValueObject("", 806),
+//                                                            new TextValueObject("", 2301)
+//                                                    )
+//                                            )
+//                                    )
+//                            )
+//                    ),
+//                    DistanceMatrixStatus.OK,
+//                    null
+//                )
+//        );
 
         //WHEN
         Hospital hospital = urgencyService.getClosestHospitalBySpeciality(latitude, longitude, speciality, ambulanceId);
