@@ -28,7 +28,8 @@ Open five terminal and run micro services files through following commands :
 ### How to use the application ?
 ## Authenticate
 To be able to use the application you need to authenticate yourself first.
-In order to do so open postman, use the POST endpoint and select `Basic Auth` in the Authorization tab.
+In order to do so open postman, use the POST endpoint `(http://localhost:8089/auth)`.
+Select `Basic Auth` in the Authorization tab and enter the following credentials `Username : clément, Password : password`.
 Your body request must be :
 ```
 {
@@ -36,6 +37,16 @@ Your body request must be :
     "password": "password"
 }
 ```
+This authentication request, if successful, generates a token returned in the header of the response associated to the key `token`. Save it for later.
+
+## Use the urgency service
+Once authenticated you can use the urgency service to get the closest hospital taking care of the provided disease.
+In order to do so open postman, use the GET endpoint with your own parameters :
+```
+/latitude/longitude/pathology/ambulance_id
+```
+Finally select `Bearer Token` in the Authorization tab and paste your saved token.
+Sending your request will return to you the closest hospital available according to the pathology of your patient.
 
 ### Technologies Used
 * [Spring boot](https://spring.io/projects/spring-boot) An open source framework based on Java for microservices and web apps creation.
