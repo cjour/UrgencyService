@@ -29,11 +29,13 @@ Open five terminal and run micro services files through following commands :
 ## Authenticate
 To be able to use the application you need to authenticate yourself first.
 In order to do so open postman, use the POST endpoint and select `Basic Auth` in the Authorization tab.
-Your body request must be 
+Your body request must be :
+```
 {
-    "username": "emergency",
+    "username": "clément",
     "password": "password"
 }
+```
 
 ### Technologies Used
 * [Spring boot](https://spring.io/projects/spring-boot) An open source framework based on Java for microservices and web apps creation.
