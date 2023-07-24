@@ -3,6 +3,10 @@
 ### Introduction
 Urgency service enables paramedics to locate the most relevant hospital in UK according to the pathology of their patient.
 
+### Requirements
+JAVA 11
+Postman
+
 ### API Endpoints
 | HTTP Verbs | Endpoints | Action |
 | --- | --- | --- |
