@@ -20,9 +20,10 @@ Open five terminal and run micro services files through following commands :
 * GraphHopper API -> `java -Ddw.graphhopper.datareader.file=england-latest.osm.pbf -jar *.jar server config-example.yml`
 
 ### API Endpoints
-| HTTP Verbs | Endpoints | Action |
-| --- | --- | --- |
-| GET | /urgency | To locate the nearest hospital taking care of the pathology |
+| HTTP Verbs | Endpoints | Action | Permission
+| --- | --- | --- | --- |
+| POST | /auth | To authenticate user and generate authentication token. | Public
+| GET | /urgency | To locate the nearest hospital taking care of the pathology. | Restricted to authenticated users
 
 ### Technologies Used
 * [Spring boot](https://spring.io/projects/spring-boot) An open source framework based on Java for microservices and web apps creation.
