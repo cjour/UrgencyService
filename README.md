@@ -9,15 +9,15 @@ Urgency service enables paramedics to locate the most relevant hospital in UK ac
 
 ### Execution of project
 ## Setup
-* 1 - Download micro services jar -> Provide link.
-* 2 - Download GraphHopper API jar : https://repo1.maven.org/maven2/com/graphhopper/graphhopper-web/7.0/graphhopper-web-7.0.jar
-* 3 - Download GraphHopper API config file -> Provide link.
-* 4 - Dowload latest geo fabrik England file : https://download.geofabrik.de/europe/great-britain/england-latest.osm.pbf
+* Download micro services jar -> Provide link.
+* Download GraphHopper API jar : https://repo1.maven.org/maven2/com/graphhopper/graphhopper-web/7.0/graphhopper-web-7.0.jar
+* Download GraphHopper API config file -> Provide link.
+* Dowload latest geo fabrik England file : https://download.geofabrik.de/europe/great-britain/england-latest.osm.pbf
 
 ## Deployment
 Open five terminal and run micro services files through following commands :
-* - Spring boot jar -> Provide commands
-* - GraphHopper API -> `java -Ddw.graphhopper.datareader.file=england-latest.osm.pbf -jar *.jar server config-example.yml`
+* Spring boot jar -> Provide commands
+* GraphHopper API -> `java -Ddw.graphhopper.datareader.file=england-latest.osm.pbf -jar *.jar server config-example.yml`
 
 ### API Endpoints
 | HTTP Verbs | Endpoints | Action |
