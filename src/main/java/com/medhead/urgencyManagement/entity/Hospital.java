@@ -29,8 +29,7 @@ public class Hospital {
         this.pathologies = pathologies;
     }
 
-    public Hospital() {
-    }
+    public Hospital() {}
 
     public Integer getId() {
         return id;

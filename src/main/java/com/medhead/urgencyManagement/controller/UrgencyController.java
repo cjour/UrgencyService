@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @EnableFeignClients(basePackages = {"com.medhead.urgencyManagement.repository"})
 public class UrgencyController {
-
     @Autowired
     IUrgencyService urgencyService;
 

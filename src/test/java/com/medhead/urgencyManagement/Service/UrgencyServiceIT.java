@@ -1,5 +1,4 @@
 package com.medhead.urgencyManagement.Service;
-/*
 
 import com.medhead.urgencyManagement.entity.Hospital;
 import com.medhead.urgencyManagement.service.IUrgencyService;
@@ -12,16 +11,15 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
-public class UrgencyServiceITests {
-
+public class UrgencyServiceIT {
     @Autowired
     private IUrgencyService urgencyService;
 
     @Test
     public void shouldReturnClosestHospital() throws Exception {
         //GIVEN
-        String latitude = "52.43719482421875";
-        String longitude = "-3.8471927642822266";
+        String latitude = "51.585049";
+        String longitude = "-0.175270";
         String pathology = "Allergy";
         String ambulanceId = "5";
 
@@ -29,7 +27,7 @@ public class UrgencyServiceITests {
         Hospital hospital = urgencyService.getClosestHospitalBySpeciality(latitude, longitude, pathology, ambulanceId);
 
         //THEN
-        // Closest hospital id is 33.
-        Assertions.assertEquals(hospital.getId(), 33);
+        // Closest hospital id is 214.
+        Assertions.assertEquals(hospital.getId(), 214);
     }
-}*/
+}

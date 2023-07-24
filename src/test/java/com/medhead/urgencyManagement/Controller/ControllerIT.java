@@ -14,14 +14,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 public class ControllerIT {
-
     @Autowired
     private MockMvc mockMvc;
 
     @Test
     public void testGetHospital() throws Exception {
-        String latitude = "52.43719482421875";
-        String longitude = "-3.8471927642822266";
+        String latitude = "51.585049";
+        String longitude = "-0.175270";
         String pathology = "Allergy";
         String ambulanceId = "5";
 
@@ -29,7 +28,7 @@ public class ControllerIT {
                 .get("/urgency/{latitude}/{longitude}/{pathology}/{ambulance_id}", latitude, longitude, pathology, ambulanceId)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id", is(33)));
+                .andExpect(jsonPath("$.id", is(214)));
     }
 }
 

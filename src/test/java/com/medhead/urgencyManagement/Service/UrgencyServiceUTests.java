@@ -14,13 +14,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.logging.Logger;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -64,47 +65,8 @@ public class UrgencyServiceUTests {
                 )
         );
 
-//        // Return for distance calculation service.
-//        when(distanceCalculationService.getDistance(any(), any(), any())).thenReturn(
-//                new DistanceMatrixResponse(
-//                    null,
-//                    null,
-//                    Arrays.asList(
-//                            new DistanceMatrixRow(
-//                                    new ArrayList<>(
-//                                            Collections.singletonList(
-//                                                    new DistanceMatrixElement(
-//                                                            DistanceMatrixElementStatus.OK,
-//                                                            new TextValueObject("", 10001),
-//                                                            new TextValueObject("", 2621)
-//                                                    )
-//                                            )
-//                                    )
-//                            )
-//                    ),
-//                    DistanceMatrixStatus.OK,
-//                    null
-//                ),
-//                new DistanceMatrixResponse(
-//                    null,
-//                    null,
-//                    Arrays.asList(
-//                            new DistanceMatrixRow(
-//                                    new ArrayList<>(
-//                                            Collections.singletonList(
-//                                                    new DistanceMatrixElement(
-//                                                            DistanceMatrixElementStatus.OK,
-//                                                            new TextValueObject("", 806),
-//                                                            new TextValueObject("", 2301)
-//                                                    )
-//                                            )
-//                                    )
-//                            )
-//                    ),
-//                    DistanceMatrixStatus.OK,
-//                    null
-//                )
-//        );
+        when(distanceCalculationService.getDistanceBetweenHospitalAndEmergency(any(), any(), any()))
+                .thenReturn(1000,500);
 
         //WHEN
         Hospital hospital = urgencyService.getClosestHospitalBySpeciality(latitude, longitude, speciality, ambulanceId);

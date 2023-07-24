@@ -12,8 +12,7 @@ public class Pathology {
         this.name = name;
     }
 
-    public Pathology() {
-    }
+    public Pathology() {}
 
     public Integer getId() {
         return id;
