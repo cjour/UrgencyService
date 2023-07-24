@@ -14,7 +14,7 @@ public class DistanceCalculationService implements IDistanceCalculationService {
     @Override
     public Integer getDistanceBetweenHospitalAndEmergency(String origins, String hospitalLatitude, String hospitalLongitude) {
 
-        String baseApiUrl = "http://localhost:8989/route";
+        String baseApiUrl = "http://127.0.0.1:8989/route";
         String getDistance = baseApiUrl + "?point=" +
                 origins + "&point=" +
                 hospitalLatitude + "," +
