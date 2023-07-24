@@ -25,6 +25,16 @@ Open five terminal and run micro services files through following commands :
 | POST | /auth | To authenticate user and generate authentication token. | Public
 | GET | /urgency | To locate the nearest hospital taking care of the pathology. | Restricted to authenticated users
 
+### How to use the application ?
+## Authenticate
+To be able to use the application you need to authenticate yourself first.
+In order to do so open postman, use the POST endpoint and select `Basic Auth` in the Authorization tab.
+Your body request must be 
+{
+    "username": "emergency",
+    "password": "password"
+}
+
 ### Technologies Used
 * [Spring boot](https://spring.io/projects/spring-boot) An open source framework based on Java for microservices and web apps creation.
 * [Java](https://www.java.com/fr/) A mutliplatform and object-oriented programming language.
