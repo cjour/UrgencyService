@@ -18,19 +18,27 @@ public class ControllerIT {
     @Autowired
     private MockMvc mockMvc;
 
+    static private final String url = "/urgency/{latitude}/{longitude}/{pathology}/{ambulance_id}";
+    static private final String latitude = "51.585049";
+    static private final String longitude = "-0.175270";
+    static private final String pathology = "Allergy";
+    static private final String ambulanceId = "5";
+
     @Test
     @WithMockUser
-    public void testGetHospital() throws Exception {
-        String latitude = "51.585049";
-        String longitude = "-0.175270";
-        String pathology = "Allergy";
-        String ambulanceId = "5";
-
+    public void getHospitalShouldReturnClosestHospitalForAuthenticatedUser() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders
-                .get("/urgency/{latitude}/{longitude}/{pathology}/{ambulance_id}", latitude, longitude, pathology, ambulanceId)
+                .get(url, latitude, longitude, pathology, ambulanceId)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", is(214)));
+    }
+    @Test
+    public void getHospitalShouldReturnUnauthorizedForUnauthenticatedUser() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders
+                .get(url, latitude, longitude, pathology, ambulanceId)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isUnauthorized());
     }
 }
 
