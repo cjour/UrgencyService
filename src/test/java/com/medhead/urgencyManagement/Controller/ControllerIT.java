@@ -33,6 +33,7 @@ public class ControllerIT {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", is(214)));
     }
+
     @Test
     public void getHospitalShouldReturnUnauthorizedForUnauthenticatedUser() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders
