@@ -1,5 +1,6 @@
 package com.medhead.urgencyManagement.Service;
 
+import com.medhead.urgencyManagement.configuration.JsonWebTokenFilter;
 import com.medhead.urgencyManagement.entity.Hospital;
 import com.medhead.urgencyManagement.entity.Pathology;
 import com.medhead.urgencyManagement.service.DistanceCalculationService;
@@ -29,6 +30,9 @@ public class UrgencyServiceUTests {
 
     @Autowired
     private IUrgencyService urgencyService;
+
+    @Autowired
+    JsonWebTokenFilter jsonWebTokenFilter;
 
     @MockBean
     private HospitalService hospitalsService;
@@ -62,8 +66,7 @@ public class UrgencyServiceUTests {
                 )
         );
 
-        when(distanceCalculationService.getDistanceBetweenHospitalAndEmergency(any(), any(), any()))
-                .thenReturn(1000,500);
+        when(distanceCalculationService.getDistanceBetweenHospitalAndEmergency(any(), any(), any())).thenReturn(1000,500);
 
         //WHEN
         Hospital hospital = urgencyService.getClosestHospitalBySpeciality(latitude, longitude, speciality, ambulanceId);
