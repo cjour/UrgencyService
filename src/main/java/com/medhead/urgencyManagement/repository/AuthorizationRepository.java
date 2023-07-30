@@ -5,10 +5,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;
 
-@Component
+@Repository
 public class AuthorizationRepository {
     private final Logger logger = LoggerFactory.getLogger(AuthorizationRepository.class);
 
@@ -22,7 +22,7 @@ public class AuthorizationRepository {
                 Boolean.class
         );
 
-        logger.info("Authorization call " + response.getStatusCode().toString());
+        logger.info("Authorization call " + response.getStatusCode());
         logger.info(response.getBody().toString());
 
         return response.getBody();

@@ -25,7 +25,6 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
-@Component
 public class JsonWebTokenFilter extends OncePerRequestFilter {
     private final Logger logger = LoggerFactory.getLogger(JsonWebTokenFilter.class);
     private final String jwtSecret = "zdtlD3JK56m6wTTgsNFhqzjqP";
