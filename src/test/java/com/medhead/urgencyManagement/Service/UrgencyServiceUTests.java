@@ -5,19 +5,19 @@ import com.medhead.urgencyManagement.entity.Pathology;
 import com.medhead.urgencyManagement.service.DistanceCalculationService;
 import com.medhead.urgencyManagement.service.HospitalService;
 import com.medhead.urgencyManagement.service.IUrgencyService;
-import com.medhead.urgencyManagement.service.UrgencyService;
-import com.medhead.urgencyManagement.utils.StringUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.logging.Logger;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
@@ -36,15 +36,12 @@ public class UrgencyServiceUTests {
     @MockBean
     private DistanceCalculationService distanceCalculationService;
 
-    private final StringUtils stringUtils = new StringUtils();
-    private static final Logger LOGGER = Logger.getLogger(String.valueOf(UrgencyService.class));
-
     @Test
     public void shouldReturnClosestHospitalBySpeciality() {
         //GIVEN
         // Parameter for urgency service.
-        String latitude = "-37.80454585386352";
-        String longitude = "175.28305848434036";
+        String latitude = "51.585049";
+        String longitude = "-0.175270";
         String speciality = "Allergy";
         String ambulanceId = "1";
 
@@ -53,12 +50,12 @@ public class UrgencyServiceUTests {
                 new ArrayList<>(
                     Arrays.asList(
                             new Hospital(1,"Auckland hospital","","","","Auckland",
-                                    "Auckland - NZ","","-36.85937761392017", "174.77031683092022",
+                                    "Auckland - NZ","","51.585079", "-0.175280",
                                     new ArrayList<>(Collections.singletonList(new Pathology(1, "Allergy")))
                             ),
                             new Hospital(
                                     2,"Waikato Hospital","","","","Auckland",
-                                    "Auckland - NZ","","-37.80454585386352", "175.28305848434036",
+                                    "Auckland - NZ","","52.585079", "-0.175280",
                                     new ArrayList<>(Collections.singletonList(new Pathology(2, "Allergy")))
                             )
                     )

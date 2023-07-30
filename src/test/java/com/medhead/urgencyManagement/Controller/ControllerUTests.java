@@ -21,8 +21,6 @@ public class ControllerUTests {
     @MockBean
     private UrgencyService urgencyService;
 
-    private static final Logger LOGGER = Logger.getLogger(String.valueOf(ControllerUTests.class));
-
     @Test
     @WithMockUser
     public void testGetHospital() throws Exception {
