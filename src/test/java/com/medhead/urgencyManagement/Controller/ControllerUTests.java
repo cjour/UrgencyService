@@ -28,7 +28,7 @@ public class ControllerUTests {
     @MockBean
     AuthorizationRepository authorizationRepository;
 
-    // @Test
+    @Test
     @WithMockUser
     public void testGetHospital() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders

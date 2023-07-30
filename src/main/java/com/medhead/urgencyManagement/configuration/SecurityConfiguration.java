@@ -26,9 +26,7 @@ public class SecurityConfiguration {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .exceptionHandling().authenticationEntryPoint((request, response, authException) -> {
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, authException.getMessage());
-        }).and().authorizeHttpRequests().anyRequest()
-                // .authenticated()
-        ;
+        }).and().authorizeHttpRequests().anyRequest().authenticated();
 
         httpSecurity.addFilterBefore(jsonWebTokenFilter, UsernamePasswordAuthenticationFilter.class);
 
