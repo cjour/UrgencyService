@@ -28,9 +28,7 @@ Open five terminal and run micro services files through following commands :
 ## How to use the application ?
 ### Authenticate
 To be able to use the application you need to authenticate yourself first.
-In order to do so open postman, use the POST endpoint `http://localhost:8089/auth`.
-Select `Basic Auth` in the Authorization tab and enter the following credentials `Username : clément, Password : password`.
-Your body request must be :
+In order to do so open postman, use the POST endpoint `http://localhost:8089/auth` with the following body request :
 ```
 {
     "username": "clément",
