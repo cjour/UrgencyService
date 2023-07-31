@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 
 // Mettre l'URL de la gateway directement (ou plutôt le nom de la gateway de Eureka).
-@FeignClient(name = "microservice-hospital", url = "http://localhost:8085")
+@FeignClient(name = "microservice-hospital", url = "http://127.0.0.1:8085")
 @Repository
 public interface HospitalRepository {
     @GetMapping(value = "/hospital/{speciality}")
