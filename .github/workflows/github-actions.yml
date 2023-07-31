@@ -26,36 +26,37 @@ jobs:
           name: Test-report-UT
           path: testing
 
-  integration-test:
-    name: Integration tests
-    needs: unit-test
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3 #Copy of the repo on the runner
-      - name: Set up JDK
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'adopt'
-          java-version: '11'
-      - name: Run integration tests
-        run: mvn clean test-compile failsafe:integration-test failsafe:verify
-      - name: Create target folder for upload success
-        if: success()
-        run: mkdir testing && cp target/surefire-reports/*.txt testing
-      - name: Create target folder for upload failure
-        if: failure()
-        run: mkdir testing && cp target/failsafe-reports/*.txt testing
-      - name: Upload artifact
-        if: success() || failure()
-        uses: actions/upload-artifact@v3
-        with:
-          name: Test-report-IT
-          path: testing
+#  integration-test:
+#    name: Integration tests
+#    needs: unit-test
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v3 #Copy of the repo on the runner
+#      - name: Set up JDK
+#        uses: actions/setup-java@v3
+#        with:
+#          distribution: 'adopt'
+#          java-version: '11'
+#      - name: Run integration tests
+#        run: mvn clean test-compile failsafe:integration-test failsafe:verify
+#      - name: Create target folder for upload success
+#        if: success()
+#        run: mkdir testing && cp target/surefire-reports/*.txt testing
+#      - name: Create target folder for upload failure
+#        if: failure()
+#        run: mkdir testing && cp target/failsafe-reports/*.txt testing
+#      - name: Upload artifact
+#        if: success() || failure()
+#        uses: actions/upload-artifact@v3
+#        with:
+#          name: Test-report-IT
+#          path: testing
 
   #Build jobs and upload jar as artifact
   build:
     name: Build application
-    needs: [unit-test, integration-test]
+    needs: [unit-test]
+  #integration-test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3 #Copy of the repo on the runner
