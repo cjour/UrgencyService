@@ -22,7 +22,9 @@ Each repository cloned must be deploy through Spring Boot.
 
 Open a terminal and run GraphHopper through following command :
 
-```java -Ddw.graphhopper.datareader.file=england-latest.osm.pbf -jar *.jar server config-example.yml```
+```
+java -Ddw.graphhopper.datareader.file=england-latest.osm.pbf -jar *.jar server config-example.yml
+```
 
 ## API Endpoints
 | HTTP Verbs | Endpoints | Action | Permission
