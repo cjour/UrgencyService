@@ -18,7 +18,7 @@ Urgency service enables paramedics to locate the most relevant hospital in UK ac
 * Dowload latest geo fabrik England file : [here](https://download.geofabrik.de/europe/great-britain/england-latest.osm.pbf).
 
 ### Deployment
-Each repository cloned must be deploy through Spring Boot.
+Each repository cloned must be deploy through Spring Boot.<br>
 Open a terminal and run GraphHopper through following command : `java -Ddw.graphhopper.datareader.file=england-latest.osm.pbf -jar *.jar server config-example.yml`
 
 ## API Endpoints
