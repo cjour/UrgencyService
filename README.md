@@ -53,6 +53,11 @@ In order to do so open postman, use the GET endpoint with your own parameters :
 Finally select `Bearer Token` in the Authorization tab and paste your saved token.
 Sending your request will return to you the closest hospital available according to the pathology of your patient.
 
+Hereunder you can find an example of a request for an authenticated user :
+```
+http://localhost:8081/urgency/51.585049/-0.175270/Allergy/45
+```
+
 ## Technologies Used
 * [Spring boot](https://spring.io/projects/spring-boot) An open source framework based on Java for microservices and web apps creation.
 * [Java](https://www.java.com/fr/) A mutliplatform and object-oriented programming language.
