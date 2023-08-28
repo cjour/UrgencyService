@@ -23,7 +23,7 @@ Open a terminal and run GraphHopper through following command : `java -Ddw.graph
 ## API Endpoints
 | HTTP Verbs | Endpoints | Action | Permission
 | --- | --- | --- | --- |
-| POST | /auth | To authenticate user and generate authentication token. | Public
+| POST | /auth | To generate authentication token. | Public
 | GET | /urgency | To locate the nearest hospital taking care of the pathology. | Restricted to authenticated users
 
 ## How to use the application ?
