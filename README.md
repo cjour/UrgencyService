@@ -12,9 +12,9 @@ Urgency service enables paramedics to locate the most relevant hospital in UK ac
 * Fork the repository responsible for hospital management and deploy it through Springboot [here](https://github.com/cjour/HospitalManagementService).
 * Fork the repository needed for security purposes and deploy it through Springboot [here](https://github.com/cjour/SecurityService).
 * Fork the current repository and deploy it though Springboot. 
-* Download GraphHopper API jar : [here](https://repo1.maven.org/maven2/com/graphhopper/graphhopper-web/7.0/graphhopper-web-7.0.jar)
-* Download GraphHopper API config file : [here](https://raw.githubusercontent.com/graphhopper/graphhopper/7.x/config-example.yml)
-* Dowload latest geo fabrik England file : [here](https://download.geofabrik.de/europe/great-britain/england-latest.osm.pbf)
+* Download GraphHopper API jar : [here](https://repo1.maven.org/maven2/com/graphhopper/graphhopper-web/7.0/graphhopper-web-7.0.jar).
+* Download GraphHopper API config file : [here](https://raw.githubusercontent.com/graphhopper/graphhopper/7.x/config-example.yml).
+* Dowload latest geo fabrik England file : [here](https://download.geofabrik.de/europe/great-britain/england-latest.osm.pbf).
 
 ### Deployment
 Open five terminal and run micro services files through following commands :
