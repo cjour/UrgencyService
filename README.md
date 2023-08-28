@@ -5,6 +5,7 @@ Urgency service enables paramedics to locate the most relevant hospital in UK ac
 
 ## Requirements
 * JAVA 11
+* Spring Boot 2.7.9
 * Postman
 
 ## Execution of project
