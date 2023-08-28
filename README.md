@@ -9,17 +9,16 @@ Urgency service enables paramedics to locate the most relevant hospital in UK ac
 
 ## Execution of project
 ### Setup
-* Fork the repository responsible for hospital management and deploy it through Springboot [here](https://github.com/cjour/HospitalManagementService).
-* Fork the repository needed for security purposes and deploy it through Springboot [here](https://github.com/cjour/SecurityService).
-* Fork the current repository and deploy it though Springboot. 
+* Clone the repository responsible for hospital management [here](https://github.com/cjour/HospitalManagementService).
+* Clone the repository needed for security purposes [here](https://github.com/cjour/SecurityService).
+* Clone the current repository. 
 * Download GraphHopper API jar : [here](https://repo1.maven.org/maven2/com/graphhopper/graphhopper-web/7.0/graphhopper-web-7.0.jar).
 * Download GraphHopper API config file : [here](https://raw.githubusercontent.com/graphhopper/graphhopper/7.x/config-example.yml).
 * Dowload latest geo fabrik England file : [here](https://download.geofabrik.de/europe/great-britain/england-latest.osm.pbf).
 
 ### Deployment
-Open five terminal and run micro services files through following commands :
-* Spring boot jar -> Provide commands
-* GraphHopper API -> `java -Ddw.graphhopper.datareader.file=england-latest.osm.pbf -jar *.jar server config-example.yml`
+Each repository cloned must be deploy through Spring Boot.
+Open a terminal and run GraphHopper through following command : `java -Ddw.graphhopper.datareader.file=england-latest.osm.pbf -jar *.jar server config-example.yml`
 
 ## API Endpoints
 | HTTP Verbs | Endpoints | Action | Permission
@@ -51,3 +50,4 @@ Sending your request will return to you the closest hospital available according
 ## Technologies Used
 * [Spring boot](https://spring.io/projects/spring-boot) An open source framework based on Java for microservices and web apps creation.
 * [Java](https://www.java.com/fr/) A mutliplatform and object-oriented programming language.
+* [GraphHopper](https://www.graphhopper.com/) A distance calculation service.
