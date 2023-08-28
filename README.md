@@ -9,9 +9,11 @@ Urgency service enables paramedics to locate the most relevant hospital in UK ac
 
 ## Execution of project
 ### Setup
-* Download micro services jar -> Provide link.
+* Fork the repository responsible for hospital management and deploy it though Springboot [https://github.com/cjour/HospitalManagementService](https://github.com/cjour/HospitalManagementService).
+* Fork the repository needed for security purposes and deploy it though Springboot [https://github.com/cjour/HospitalManagementService](https://github.com/cjour/SecurityService).
+* Fork the current repository and deploy it though Springboot. 
 * Download GraphHopper API jar : https://repo1.maven.org/maven2/com/graphhopper/graphhopper-web/7.0/graphhopper-web-7.0.jar
-* Download GraphHopper API config file -> Provide link.
+* Download GraphHopper API config file : https://raw.githubusercontent.com/graphhopper/graphhopper/7.x/config-example.yml
 * Dowload latest geo fabrik England file : https://download.geofabrik.de/europe/great-britain/england-latest.osm.pbf
 
 ### Deployment
