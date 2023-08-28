@@ -45,10 +45,10 @@ In order to do so open postman, use the POST endpoint `http://localhost:8089/aut
 This authentication request, if successful, generates a token returned in the header of the response associated to the key `token`. Save it for later.
 
 ### Use the urgency service
-Once authenticated you can use the urgency service to get the closest hospital taking care of the provided disease.
+Once authenticated you can use the urgency service to get the closest hospital taking care of the provided pathology [pathologies](https://s3-eu-west-1.amazonaws.com/course.oc-static.com/projects/Architecte+Logiciel+FR/P11/Donne%CC%81es+de+re%CC%81fe%CC%81rence+sur+les+spe%CC%81cialite%CC%81s+NHS.pdf).
 In order to do so open postman, use the GET endpoint with your own parameters :
 ```
-/latitude/longitude/pathology/ambulance_id
+http://localhost:8081/urgency/latitude/longitude/pathology/ambulance_id
 ```
 Finally select `Bearer Token` in the Authorization tab and paste your saved token.
 Sending your request will return to you the closest hospital available according to the pathology of your patient.
