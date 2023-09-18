@@ -39,6 +39,7 @@ public class ControllerUTests {
 
     @Test
     public void testGetHospitalUnauthenticatedUser() throws Exception {
+        //test commit
         mockMvc.perform(MockMvcRequestBuilders
                 .get("/urgency/{latitude}/{longitude}/{pathology}/{ambulance_id}", "52.43719482421875", "-3.8471927642822266", "Allergy", "5")
                 .accept(MediaType.APPLICATION_JSON))
